@@ -16,6 +16,7 @@ import pfe.LearnUp.Repository.UserRepository;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class StudentService {
@@ -43,6 +44,14 @@ public class StudentService {
         Apprenant savedApprenant = studentRepository.save(apprenant);
 
         return convertToStudentDTO(savedApprenant);
+    }
+
+
+    public List<ApprenantDTO> getApprenantsByClasse(String classe) {
+        List<Apprenant> apprenants = studentRepository.findByClasse(classe);
+        return apprenants.stream()
+                .map(this::convertToStudentDTO)
+                .collect(Collectors.toList());
     }
 
 
@@ -85,7 +94,7 @@ public class StudentService {
 
             apprenant.setFullName(updatedApprenantDTO.getFullName());
             apprenant.setInterests(updatedApprenantDTO.getInterests());
-
+            apprenant.setClasse(updatedApprenantDTO.getClasse());
             apprenant.setEducationLevel(updatedApprenantDTO.getEducationLevel());
 
             UserDTO updatedUserDTO = updatedApprenantDTO.getUserDTO();
@@ -116,6 +125,7 @@ public class StudentService {
         Apprenant apprenant = new Apprenant();
         apprenant.setFullName(apprenantDTO.getFullName());
         apprenant.setInterests(apprenantDTO.getInterests());
+        apprenant.setClasse(apprenantDTO.getClasse());
         apprenant.setEducationLevel(apprenantDTO.getEducationLevel());
         User user = new User();
         user.setEmail(userDTO.getEmail());
@@ -132,7 +142,7 @@ public class StudentService {
         apprenantDTO.setFullName(apprenant.getFullName());
         apprenantDTO.setInterests(apprenant.getInterests());
         apprenantDTO.setEducationLevel(apprenant.getEducationLevel());
-
+        apprenantDTO.setClasse(apprenant.getClasse());
         User user = apprenant.getUser();
         if (user != null) {
             UserDTO userDTO = new UserDTO();

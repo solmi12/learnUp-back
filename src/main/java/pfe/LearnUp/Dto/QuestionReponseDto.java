@@ -13,7 +13,8 @@ public class QuestionReponseDto {
 
     private Long qaId;
     private Long apprenantId;
-    private String message;
+    private String question;
+    private String reponse;
     private Long formateurId;
     private Boolean needsReview;
     private Date addedDate;

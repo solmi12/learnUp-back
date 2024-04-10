@@ -1,17 +1,18 @@
 package pfe.LearnUp.Dto;
 
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.Date;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class ApprenantDTO {
+public class SouhaitsDto {
+
+    private Long souhaitId;
     private Long apprenantId;
-    private UserDTO userDTO;
-    private String fullName;
-    private String interests;
-    private String classe;
-    private String educationLevel;
+    private Long courId;
 }

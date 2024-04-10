@@ -9,9 +9,11 @@ import pfe.LearnUp.Dto.AdminDTO;
 import pfe.LearnUp.Dto.StudentAndUserDTO;
 import pfe.LearnUp.Dto.ApprenantDTO;
 
+import pfe.LearnUp.Entity.Apprenant;
 import pfe.LearnUp.Services.StudentService;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/students")
@@ -52,6 +54,11 @@ public class StudentController {
         return ResponseEntity.noContent().build();
     }
 
+    @GetMapping("/byClasse/{classe}")
+    public ResponseEntity<List<ApprenantDTO>> getApprenantsByClasse(@PathVariable String classe) {
+        List<ApprenantDTO> apprenants = studentService.getApprenantsByClasse(classe);
+        return ResponseEntity.ok(apprenants);
+    }
     @PutMapping("/{apprenantId}")
     public ResponseEntity<ApprenantDTO> updateFormateur(@PathVariable Long apprenantId, @RequestBody ApprenantDTO updatedApprenantDto) {
         ApprenantDTO updatedApprenant = studentService.updateApprenant(apprenantId, updatedApprenantDto);

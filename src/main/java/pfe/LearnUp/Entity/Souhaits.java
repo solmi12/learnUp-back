@@ -9,24 +9,21 @@ import lombok.NoArgsConstructor;
 import java.util.Date;
 
 @Entity
-@Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class QuestionReponse {
-
+@Data
+public class Souhaits {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long qaId;
+    private Long souhaitId;
+
     @ManyToOne
     @JoinColumn(name = "apprenant_id")
     private Apprenant apprenant;
-    private String question;
-    private String reponse;
-    private Boolean needsReview;
-    @ManyToOne
-    @JoinColumn(name = "formateur_id")
-    private Formateur formateur;
 
-    private Date addedDate;
+    @ManyToOne
+    @JoinColumn(name = "cour_id")
+    private Cour cour;
+
 }
 

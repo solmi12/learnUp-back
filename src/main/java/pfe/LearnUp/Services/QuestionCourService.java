@@ -33,7 +33,7 @@ public class QuestionCourService {
         QuestionReponse newQuestion = new QuestionReponse();
 
         newQuestion.setAddedDate(questionReponseDto.getAddedDate());
-        newQuestion.setMessage(questionReponseDto.getMessage());
+        newQuestion.setQuestion(questionReponseDto.getQuestion());
         newQuestion.setNeedsReview(true);
 
 
@@ -86,7 +86,7 @@ public class QuestionCourService {
         Optional<QuestionReponse> optionalQuestion = questionReponseRepository.findById(qaId);
         if (optionalQuestion.isPresent()) {
             QuestionReponse questionReponse = optionalQuestion.get();
-            questionReponse.setMessage(updatedDto.getMessage());
+            questionReponse.setReponse(updatedDto.getReponse());
             questionReponse.setNeedsReview(false);
             QuestionReponse updatedQuestion = questionReponseRepository.save(questionReponse);
             return convertToDto(updatedQuestion);
@@ -126,7 +126,8 @@ public class QuestionCourService {
     public QuestionReponseDto convertToDto(QuestionReponse questionReponse) {
         QuestionReponseDto dto = new QuestionReponseDto();
         dto.setQaId(questionReponse.getQaId());
-        dto.setMessage(questionReponse.getMessage());
+        dto.setQuestion(questionReponse.getQuestion());
+        dto.setReponse(questionReponse.getReponse());
         dto.setApprenantId(questionReponse.getApprenant().getApprenantId());
         dto.setFormateurId(questionReponse.getFormateur().getFormateurId());
         dto.setAddedDate(questionReponse.getAddedDate());
@@ -145,7 +146,9 @@ public class QuestionCourService {
         formateur.setFormateurId(dto.getFormateurId());
         questionReponse.setFormateur(formateur);
 
-        questionReponse.setMessage(dto.getMessage());
+        questionReponse.setQuestion(dto.getQuestion()
+
+        );
         questionReponse.setNeedsReview(dto.getNeedsReview());
         questionReponse.setAddedDate(dto.getAddedDate());
         return questionReponse;

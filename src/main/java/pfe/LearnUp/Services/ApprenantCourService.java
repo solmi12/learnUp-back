@@ -19,10 +19,15 @@ public class ApprenantCourService {
     private ApprenantCourRepository apprenantCourRepository;
 
     public ApprenantCourDto addApprenantCour(ApprenantCourDto dto) {
-        ApprenantCour apprenantCour = convertToEntity(dto);
-        apprenantCour.setAddedDate(new Date());
-        apprenantCour = apprenantCourRepository.save(apprenantCour);
-        return convertToDto(apprenantCour);
+        if (apprenantCourRepository.existsByApprenant_ApprenantIdAndCour_CourId(dto.getApprenantId(), dto.getCourId())) {
+
+            throw new IllegalArgumentException("Course is already in the list."); // You can customize the error message as needed
+        } else {
+            ApprenantCour apprenantCour = convertToEntity(dto);
+            apprenantCour.setAddedDate(new Date());
+            apprenantCour = apprenantCourRepository.save(apprenantCour);
+            return convertToDto(apprenantCour);
+        }
     }
 
     public void deleteApprenantCour(Long apprenantCourId) {
@@ -57,6 +62,13 @@ public class ApprenantCourService {
         List<ApprenantCour> apprenantCourList = apprenantCourRepository.findByApprenant_ApprenantId(apprenantId);
         return apprenantCourList.stream()
                 .map(ApprenantCour::getCour)
+                .collect(Collectors.toList());
+    }
+
+    public List<ApprenantCourDto> getApprenantCourDtosByApprenantId(Long apprenantId) {
+        List<ApprenantCour> apprenantCourList = apprenantCourRepository.findByApprenant_ApprenantId(apprenantId);
+        return apprenantCourList.stream()
+                .map(this::convertToDto)
                 .collect(Collectors.toList());
     }
 

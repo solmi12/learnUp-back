@@ -24,14 +24,19 @@ public class ApprenantCourController {
         return new ResponseEntity<>(addedApprenantCour, HttpStatus.CREATED);
     }
 
-    @DeleteMapping("/delete/{id}")
-    public ResponseEntity<Void> deleteApprenantCour(@PathVariable("id") Long apprenantCourId) {
+    @DeleteMapping("/delete/{apprenantCourid}")
+    public ResponseEntity<Void> deleteApprenantCour(@PathVariable("apprenantCourid") Long apprenantCourId) {
         apprenantCourService.deleteApprenantCour(apprenantCourId);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
     @GetMapping("/cours/{apprenantId}")
     public List<Cour> getCoursByApprenantId(@PathVariable Long apprenantId) {
         return apprenantCourService.getCoursByApprenantId(apprenantId);
+    }
+
+    @GetMapping("/coursApprenant/{apprenantId}")
+    public List<ApprenantCourDto> getCoursApprenantByApprenantId(@PathVariable Long apprenantId) {
+        return apprenantCourService.getApprenantCourDtosByApprenantId(apprenantId);
     }
 
     @GetMapping("/apprenants/{courId}")
