@@ -5,6 +5,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import pfe.LearnUp.Dto.ApprenantCourDto;
+import pfe.LearnUp.Dto.SouhaitsDto;
 import pfe.LearnUp.Entity.Apprenant;
 import pfe.LearnUp.Entity.Cour;
 import pfe.LearnUp.Services.ApprenantCourService;
@@ -18,10 +19,11 @@ public class ApprenantCourController {
     @Autowired
     private ApprenantCourService apprenantCourService;
 
+
     @PostMapping("/add")
     public ResponseEntity<ApprenantCourDto> addApprenantCour(@RequestBody ApprenantCourDto dto) {
         ApprenantCourDto addedApprenantCour = apprenantCourService.addApprenantCour(dto);
-        return new ResponseEntity<>(addedApprenantCour, HttpStatus.CREATED);
+        return ResponseEntity.status(HttpStatus.CREATED).body(addedApprenantCour);
     }
 
     @DeleteMapping("/delete/{apprenantCourid}")
@@ -30,13 +32,21 @@ public class ApprenantCourController {
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
     @GetMapping("/cours/{apprenantId}")
-    public List<Cour> getCoursByApprenantId(@PathVariable Long apprenantId) {
-        return apprenantCourService.getCoursByApprenantId(apprenantId);
+    public ResponseEntity<List<Cour>> getCoursByApprenantId(@PathVariable Long apprenantId) {
+        List<Cour> courList = apprenantCourService.getCoursByApprenantId(apprenantId);
+        return ResponseEntity.ok(courList);
     }
 
+
     @GetMapping("/coursApprenant/{apprenantId}")
-    public List<ApprenantCourDto> getCoursApprenantByApprenantId(@PathVariable Long apprenantId) {
-        return apprenantCourService.getApprenantCourDtosByApprenantId(apprenantId);
+    public ResponseEntity<?> getCoursApprenantByApprenantId(@PathVariable Long apprenantId) {
+        List<ApprenantCourDto> souhaitsDtoList = apprenantCourService.getApprenantCourDtosByApprenantId(apprenantId);
+
+        if (souhaitsDtoList.isEmpty()) {
+            return ResponseEntity.status(HttpStatus.NO_CONTENT).body("No souhaits found for the given apprenantId.");
+        } else {
+            return ResponseEntity.ok(souhaitsDtoList);
+        }
     }
 
     @GetMapping("/apprenants/{courId}")

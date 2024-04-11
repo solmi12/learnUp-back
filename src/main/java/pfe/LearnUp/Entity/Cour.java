@@ -20,9 +20,9 @@ public class Cour {
     private Long courId;
     @NonNull
     private String courName;
-    @Column(name = "description", columnDefinition = "TEXT")
-    @Lob
-    private String description;
+        @Column(name = "description", columnDefinition = "TEXT")
+        @Lob
+        private String description;
 
     @JsonIgnore
     @ManyToOne
