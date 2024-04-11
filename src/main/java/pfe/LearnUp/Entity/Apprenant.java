@@ -31,6 +31,5 @@ public class Apprenant {
     @Column(nullable = false)
     private String educationLevel;
 
-    @OneToMany(mappedBy = "apprenant", cascade = CascadeType.ALL)
-    private List<ApprenantCour> apprenantCours;
+
 }

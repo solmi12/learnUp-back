@@ -21,7 +21,7 @@ public class ApprenantCourService {
     public ApprenantCourDto addApprenantCour(ApprenantCourDto dto) {
         if (apprenantCourRepository.existsByApprenant_ApprenantIdAndCour_CourId(dto.getApprenantId(), dto.getCourId())) {
 
-            throw new IllegalArgumentException("Course is already in the list."); // You can customize the error message as needed
+            throw new IllegalArgumentException("Course is already in the list.");
         } else {
             ApprenantCour apprenantCour = convertToEntity(dto);
             apprenantCour.setAddedDate(new Date());

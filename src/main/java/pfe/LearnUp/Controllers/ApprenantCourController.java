@@ -40,17 +40,18 @@ public class ApprenantCourController {
 
     @GetMapping("/coursApprenant/{apprenantId}")
     public ResponseEntity<?> getCoursApprenantByApprenantId(@PathVariable Long apprenantId) {
-        List<ApprenantCourDto> souhaitsDtoList = apprenantCourService.getApprenantCourDtosByApprenantId(apprenantId);
+        List<ApprenantCourDto> apprenantCourDtoList = apprenantCourService.getApprenantCourDtosByApprenantId(apprenantId);
 
-        if (souhaitsDtoList.isEmpty()) {
-            return ResponseEntity.status(HttpStatus.NO_CONTENT).body("No souhaits found for the given apprenantId.");
+        if (apprenantCourDtoList.isEmpty()) {
+            return ResponseEntity.status(HttpStatus.NO_CONTENT).body("No apprenantCour found for the given apprenantId.");
         } else {
-            return ResponseEntity.ok(souhaitsDtoList);
+            return ResponseEntity.ok(apprenantCourDtoList);
         }
     }
 
     @GetMapping("/apprenants/{courId}")
-    public List<Apprenant> getApprenantsByCourId(@PathVariable Long courId) {
-        return apprenantCourService.getApprenantsByCourId(courId);
+    public ResponseEntity<List<Apprenant>> getApprenantsByCourId(@PathVariable Long courId) {
+        List<Apprenant> apprenantList = apprenantCourService.getApprenantsByCourId(courId);
+        return ResponseEntity.ok(apprenantList);
     }
 }
