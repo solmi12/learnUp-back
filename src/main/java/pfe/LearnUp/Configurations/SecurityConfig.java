@@ -74,9 +74,15 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.POST,"/formateur/add").permitAll()
                         .requestMatchers(HttpMethod.GET,"/formateur/**").permitAll()
                         .requestMatchers(HttpMethod.PUT,"/formateur/**").permitAll()
-
+                        .requestMatchers(HttpMethod.PUT,"/payments/**").permitAll()
+                        .requestMatchers(HttpMethod.GET,"/payments/**").permitAll()
+                        .requestMatchers(HttpMethod.POST,"/payments/**").permitAll()
+                        .requestMatchers(HttpMethod.DELETE,"/payments/**").permitAll()
                         .requestMatchers(HttpMethod.GET,"/question/**").permitAll()
-
+                        .requestMatchers(HttpMethod.POST,"/quiz/**").permitAll()
+                        .requestMatchers(HttpMethod.PUT,"/quiz/**").permitAll()
+                        .requestMatchers(HttpMethod.DELETE,"/quiz/**").permitAll()
+                        .requestMatchers(HttpMethod.GET,"/quiz/**").permitAll()
                         .requestMatchers(HttpMethod.PUT,"/question/**").permitAll()
                         .requestMatchers(HttpMethod.POST,"/question/**").permitAll()
                         .requestMatchers(HttpMethod.POST,"/formateur/add").permitAll()

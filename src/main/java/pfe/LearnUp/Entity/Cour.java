@@ -41,6 +41,9 @@ public class Cour {
     private Double totalPrice;
 
 
+    @OneToOne
+    @JoinColumn(name = "quiz_id", unique = true)
+    private Quiz quiz;
 
     @ManyToOne
     @JoinColumn(name = "formateur_id")

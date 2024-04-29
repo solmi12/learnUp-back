@@ -14,7 +14,6 @@
 
     import java.io.IOException;
     import java.util.Base64;
-    import java.util.Collections;
     import java.util.List;
     import java.util.Optional;
     import java.util.stream.Collectors;
@@ -108,6 +107,8 @@
                         .map(this::convertToDTO)
                         .collect(Collectors.toList());
             }
+
+
         private final Object notificationLock = new Object();
 
         public List<CourDto> getNewCoursForFormateurNotification() {

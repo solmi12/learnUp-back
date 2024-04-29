@@ -38,6 +38,7 @@ public class MyCommandLineRunner implements CommandLineRunner {
             newAdmin.setFirstName("admin");
             newAdmin.setLastName("admin");
 
+
             adminRepository.save(newAdmin);
 
             System.out.println("New admin created.");

@@ -35,7 +35,6 @@
         private String phoneNumber;
 
         @OneToMany(mappedBy = "formateur", cascade = CascadeType.ALL)
-
         @JsonIgnore
         private List<Cour> courses;
 
