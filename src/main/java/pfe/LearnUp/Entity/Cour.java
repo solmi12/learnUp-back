@@ -21,7 +21,7 @@ public class Cour {
     @NonNull
     private String courName;
         @Column(name = "description", columnDefinition = "TEXT")
-        @Lob
+
         private String description;
 
     @JsonIgnore
