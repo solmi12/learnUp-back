@@ -40,10 +40,9 @@ public class Cour {
     private Double discountedPrice;
     private Double totalPrice;
 
+    @OneToMany(mappedBy = "cour", cascade = CascadeType.ALL)
+    private List<Quiz> quizzes;
 
-    @OneToOne
-    @JoinColumn(name = "quiz_id", unique = true)
-    private Quiz quiz;
 
     @ManyToOne
     @JoinColumn(name = "formateur_id")

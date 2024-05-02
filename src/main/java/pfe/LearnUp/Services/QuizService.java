@@ -132,11 +132,11 @@ public class QuizService {
                 quiz.getQuestion5()
         });
         quizDto.setCorrectResponses(new String[][]{
-                {quiz.getCorrectReponseQuestion1(), quiz.getFalseReponse1Question1(), quiz.getFalseReponse2Question1(), quiz.getFalseReponse3Question1()},
-                {quiz.getCorrectReponseQuestion2(), quiz.getFalseReponse1Question2(), quiz.getFalseReponse2Question2(), quiz.getFalseReponse3Question2()},
-                {quiz.getCorrectReponseQuestion3(), quiz.getFalseReponse1Question3(), quiz.getFalseReponse2Question3(), quiz.getFalseReponse3Question3()},
-                {quiz.getCorrectReponseQuestion4(), quiz.getFalseReponse1Question4(), quiz.getFalseReponse2Question4(), quiz.getFalseReponse3Question4()},
-                {quiz.getCorrectReponseQuestion5(), quiz.getFalseReponse1Question5(), quiz.getFalseReponse2Question5(), quiz.getFalseReponse3Question5()}
+                {quiz.getCorrectReponseQuestion1()},
+                {quiz.getCorrectReponseQuestion2()},
+                {quiz.getCorrectReponseQuestion3()},
+                {quiz.getCorrectReponseQuestion4()},
+                {quiz.getCorrectReponseQuestion5()}
         });
         // Set false responses
         quizDto.setFalseResponses(new String[][]{
@@ -147,8 +147,7 @@ public class QuizService {
                 {quiz.getFalseReponse1Question5(), quiz.getFalseReponse2Question5(), quiz.getFalseReponse3Question5()}
         });
 
-
-
         return quizDto;
     }
+
 }

@@ -16,7 +16,7 @@ public class Quiz {
     private Long quizId;
 
 
-    @OneToOne(cascade = CascadeType.ALL, mappedBy = "quiz")
+    @ManyToOne
     @JoinColumn(name = "cour_id")
     private Cour cour;
 
